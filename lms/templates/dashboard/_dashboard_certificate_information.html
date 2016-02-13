@@ -67,7 +67,7 @@ else:
          ${_("Download Your ID Verified {cert_name_short} (PDF)").format(cert_name_short=cert_name_short)}</a></li>
     % endif
 
-    % if cert_status['show_survey_button']:
+    % if cert_status['show_survey_button'] and True==False:
       <li class="action"><a class="cta" href="${cert_status['survey_url']}">
              ${_("Complete our course feedback survey")}</a></li>
     % endif
