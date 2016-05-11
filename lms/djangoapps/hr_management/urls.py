@@ -4,8 +4,8 @@ from django.conf.urls import include, patterns, url
 from hr_management import views
 
 urlpatterns = patterns(
-    '',
-    url(r'^$',views.index.as_view(), name='index'),
-    url(r'^users$',views.user_list.as_view(), name='user_list'),
-    url(r'^courses$',views.course_list.as_view(), name='course_list'),
+    'hr_management.views',
+    url(r'^$','index', name='index'),
+    url(r'^users$','user_list', name='user_list'),
+    url(r'^courses$','course_list', name='course_list'),
 )
