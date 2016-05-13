@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, Http404
 
 from django.views.generic.base import TemplateView
 
+from microsite_configuration import microsite
 from microsite_configuration.models import Microsite
 
 #TODO figure out if we want to make this code dependent on edx-organizations
@@ -52,13 +53,19 @@ def user_list(request):
 
 @login_required
 def course_list(request):
-    #get all courses belonging to NYIF???
+    #not sure what to do here:
+    #   1. get all courses belonging to NYIF??? 
+    #       - allow hr-manager to add courses to their catalog
+    #   2, get all courses associated with Org
+    #       - needs to be pre approved by NYIF staff
     #view here will allow courses to be copied into hr_manager's microsite Org
     user = request.user
     domain = request.META.get('HTTP_HOST', None)
     microsite = Microsite.get_microsite_for_domain(domain)
     organization = microsite.get_organizations()
 
+
+    # microsite_org = microsite.get_value('course_org_filter')
     courses = ''
 
     context = {
