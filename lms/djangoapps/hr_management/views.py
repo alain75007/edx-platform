@@ -28,7 +28,7 @@ def index(request):
     }
     return render(request, 'hr_management/index.html',context)
 
-
+@login_required
 def user_list(request):
     #get all users belonging to specific Org
     user = request.user
@@ -47,7 +47,7 @@ def user_list(request):
     }
     return render(request, 'hr_management/users.html',context)
 
-
+@login_required
 def course_list(request):
     #get all courses belonging to NYIF???
     #view here will allow courses to be copied into hr_manager's microsite Org
