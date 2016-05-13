@@ -10,6 +10,8 @@ from django.views.generic.base import TemplateView
 
 from microsite_configuration.models import Microsite
 
+#TODO figure out if we want to make this code dependent on edx-organizations
+# from organizations.models import Organization
 
 log = logging.getLogger(__name__)
 
@@ -35,8 +37,10 @@ def user_list(request):
     domain = request.META.get('HTTP_HOST', None)
     microsite = Microsite.get_microsite_for_domain(domain)
     organization = '' #microsite.get_organizations()
+    # organization = organization[0]
 
-    # users = User.object.filter()
+    users = organization.users.all()
+    # users = User.objects.filter(organizations=organization)
 
     context = {
         'message': 'hr user list',
