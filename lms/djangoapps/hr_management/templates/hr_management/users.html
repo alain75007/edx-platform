@@ -5,12 +5,16 @@
 </head>
 <body>
 	
-	<h1> index.html </h1>
+	<h1> users.html </h1>
 	<ul>
 		<li>{{ message }}</li>
 		<li>{{ user }}</li>
 		<li>{{ microsite }}</li>
 		<li>{{ organization }}</li>
+		<ol>
+			{% for u in users %}
+				<li>{{ u }}</li>
+		</ol>
 	</ul>
 </body>
 </head>

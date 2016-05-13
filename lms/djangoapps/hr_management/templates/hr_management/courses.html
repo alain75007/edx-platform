@@ -5,12 +5,17 @@
 </head>
 <body>
 	
-	<h1> index.html </h1>
+	<h1> courses.html </h1>
 	<ul>
 		<li>{{ message }}</li>
 		<li>{{ user }}</li>
 		<li>{{ microsite }}</li>
 		<li>{{ organization }}</li>
+		<li>Courses</li>
+		<ol>
+			{% for c in courses %}
+				<li>{{ c }}</li>
+		</ol>
 	</ul>
 </body>
 </head>
