@@ -11,9 +11,11 @@
 		<li>{{ user }}</li>
 		<li>{{ microsite }}</li>
 		<li>{{ organization }}</li>
+		<li>Users:</li>
 		<ol>
 			{% for u in users %}
 				<li>{{ u }}</li>
+			{% endfor %}
 		</ol>
 	</ul>
 </body>
