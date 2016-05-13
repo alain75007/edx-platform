@@ -5,12 +5,12 @@
 </head>
 <body>
 	
-	<h1> users.html </h1>
+	<h1>Template: users.html </h1>
 	<ul>
 		<li>{{ message }}</li>
-		<li>{{ user }}</li>
-		<li>{{ microsite }}</li>
-		<li>{{ organization }}</li>
+		<li>Requesting user:{{ user }}</li>
+		<li>Microsite: {{ microsite }}</li>
+		<li>Organizations: {{ organization }}</li>
 		<li>Users:</li>
 		<ol>
 			{% for u in users %}

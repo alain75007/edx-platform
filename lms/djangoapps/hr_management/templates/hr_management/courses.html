@@ -5,12 +5,12 @@
 </head>
 <body>
 	
-	<h1> courses.html </h1>
+	<h1>Template: courses.html </h1>
 	<ul>
 		<li>{{ message }}</li>
-		<li>{{ user }}</li>
-		<li>{{ microsite }}</li>
-		<li>{{ organization }}</li>
+		<li>Requesting user:{{ user }}</li>
+		<li>Microsite: {{ microsite }}</li>
+		<li>Organizations: {{ organization }}</li>
 		<li>Courses</li>
 		<ol>
 			{% for c in courses %}
