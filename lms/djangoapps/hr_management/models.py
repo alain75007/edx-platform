@@ -1,15 +1,15 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from organizations.models import Organization
 
 # NOTE: V1 - NYIF admins will be given access to this /admin interface
 #            where they wil be able to assign the HrManager role to existing users
 #            
 class HrManager(models.Model):
-    user = models.OneToOneField(User, unique=True, db_index=True)
+    user = models.OneToOneField(User)
+    organization = models.OneToOneField(Organization)
 
-    # figure out where to tie user in (microsite or organization)
-    #   NOTE: organization probably needs to use db driven microsites
-    #         because it has a db model for Organization
-    #         
+    def __str__(self):
+        return '{}: {}'.format(self.user, self.organization)
     #organization = models.ManyToManyField(Org)
