@@ -1,9 +1,7 @@
-<DOCTYPE html>
-<html>
-<head>
-	<title>hr_management</title>
-</head>
-<body>
+{% extends "main_django.html" %}
+{% block title %}<title>hr_management</title>{% endblock %}
+
+{% block body %}
 	
 	<h1>Template: users.html </h1>
 	<ul>
@@ -18,5 +16,5 @@
 			{% endfor %}
 		</ol>
 	</ul>
-</body>
-</head>
+
+{% endblock %}

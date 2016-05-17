@@ -1,9 +1,7 @@
-<DOCTYPE html>
-<html>
-<head>
-	<title>hr_management</title>
-</head>
-<body>
+{% extends "main_django.html" %}
+{% block title %}<title>hr_management</title>{% endblock %}
+
+{% block body %}
 	
 	<h1>Template: index.html </h1>
 	<ul>
@@ -12,5 +10,4 @@
 		<li>Microsite: {{ microsite }}</li>
 		<li>Organizations: {{ organization }}</li>
 	</ul>
-</body>
-</head>
+{% endblock %}
