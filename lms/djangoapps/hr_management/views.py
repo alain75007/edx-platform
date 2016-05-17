@@ -1,5 +1,6 @@
 import logging
 
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -13,6 +14,7 @@ from microsite_configuration.models import Microsite
 from xmodule.modulestore.django import modulestore
 
 from organizations.models import Organization
+from .models import HrManager
 
 log = logging.getLogger(__name__)
 
@@ -21,7 +23,10 @@ def index(request):
     user = request.user
     domain = request.META.get('HTTP_HOST', None)
     microsite = Microsite.get_microsite_for_domain(domain)
-    organization = microsite.get_organizations()
+    organizations = microsite.get_organizations()
+    organization = organizations[0]
+
+    _user_has_access(user,organization)
 
     context = {
         'message': 'hr index',
@@ -37,8 +42,10 @@ def user_list(request):
     user = request.user
     domain = request.META.get('HTTP_HOST', None)
     microsite = Microsite.get_microsite_for_domain(domain)
-    organization = microsite.get_organizations()
-    organization = organization[0]
+    organizations = microsite.get_organizations()
+    organization = organizations[0]
+
+    _user_has_access(user,organization)
 
     users = Organization.objects.get(short_name=organization).users.all()
 
@@ -56,8 +63,10 @@ def course_list(request):
     user = request.user
     domain = request.META.get('HTTP_HOST', None)
     microsite = Microsite.get_microsite_for_domain(domain)
-    organization = microsite.get_organizations()
-    organization = organization[0]
+    organizations = microsite.get_organizations()
+    organization = organizations[0]
+
+    _user_has_access(user,organization)
 
     courses = [c for c in modulestore().get_courses() if c.org == organization]
 
@@ -70,3 +79,15 @@ def course_list(request):
     }
     return render(request, 'hr_management/courses.html',context)
 
+#TODO: refactor into decorator/mixin
+def _user_has_access(user,organization):
+    '''
+    set user access in /admin/hr_management/hrmanager/
+    '''
+    user_exists = HrManager.objects.filter(user__username=user).filter(organization__short_name=organization)
+
+    if user_exists:
+        return True
+    else:
+        log.error('User {} does not have access to hr-management for microsite: {}'.format(user, organization))
+        raise PermissionDenied
