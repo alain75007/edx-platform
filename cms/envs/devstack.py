@@ -7,8 +7,9 @@ from os.path import abspath, dirname, join
 from .aws import *  # pylint: disable=wildcard-import, unused-wildcard-import
 
 # Don't use S3 in devstack, fall back to filesystem
-del DEFAULT_FILE_STORAGE
+#DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 MEDIA_ROOT = "/edx/var/edxapp/uploads"
+MEDIA_URL = "/uploads/"
 
 DEBUG = True
 USE_I18N = True
