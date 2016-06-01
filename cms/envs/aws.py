@@ -269,6 +269,9 @@ elif AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
 else:
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
+MEDIA_ROOT = '/edx/var/edxapp/media'
+MEDIA_URL = '/media/'
+
 DATABASES = AUTH_TOKENS['DATABASES']
 
 # Enable automatic transaction management on all databases
